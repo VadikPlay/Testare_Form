@@ -2,8 +2,10 @@ package org.test.utils;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
 import java.io.File;
@@ -64,5 +66,13 @@ public class SeleniumDriver {
             e.printStackTrace();
         }
         return remoteDriver;
+    }
+
+    public static void scrollToEl(WebDriver driver, WebElement el) {
+        new Actions(driver).scrollToElement(el).perform();
+    }
+
+    public static void scrollByAmount(WebDriver driver, int x, int y) {
+        new Actions(driver).scrollByAmount(x, y).perform();
     }
 }
