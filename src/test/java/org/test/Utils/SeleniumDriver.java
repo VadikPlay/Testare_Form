@@ -39,25 +39,17 @@ public class SeleniumDriver {
 
     public static RemoteWebDriver getRemoteDriver() {
         ChromeOptions options = new ChromeOptions();
+        options.addArguments("--remote-allow-origins=*");
         options.setCapability("browserVersion", "128.0");
         options.setCapability("selenoid:options", new HashMap<String, Object>() {{
-            /* How to add test badge */
             put("name", "Test badge...");
-
-            /* How to set session timeout */
             put("sessionTimeout", "15m");
-
-            /* How to set timezone */
             put("env", new ArrayList<String>() {{
                 add("TZ=UTC");
             }});
-
-            /* How to enable video recording */
             put("enableVideo", true);
             put("enableVNC", true);
             put("enableLog", true);
-            put("noSandbox", true);
-            put("headless", true);
         }});
         RemoteWebDriver remoteDriver = null;
         try {
